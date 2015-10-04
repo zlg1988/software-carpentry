@@ -1,0 +1,41 @@
+---
+title: "my project"
+output: html_document
+---
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+summary(cars)
+```
+
+You can also embed plots, for example:
+
+```{r, echo=TRUE}
+plot(cars)
+
+data1 <- read.table(file ="output/combined_gapMinder.tsv",header= TRUE)
+
+data2 <- subset(data1, country == "China")
+data3 <- subset(data1, country =="Austria")
+data4 <- subset(data1, country =="Belgium")
+plot( data2$year, data2$gdpPercap, type="l", col="red", xlab="year",ylab="GDP",main="GDP", yaxt='n')
+points(data2$year, data2$gdpPercap, pch =15, col = "red")
+par(new=TRUE)
+plot( data2$year, data3$gdpPercap, type="l", col="green",xlab="",ylab="", yaxt='n')
+ points(data2$year, data3$gdpPercap, pch =17, col = "green")
+ par(new=TRUE)
+plot( data2$year, data4$gdpPercap, type="l", col="blue",xlab="",ylab="")
+ points(data2$year, data3$gdpPercap, pch =19, col = "blue")
+ 
+legend( x="topleft", 
+        legend=c("China","Austria","Belgium"),
+        col=c("red","green","blue"), pch=15，17,19, lwd=2,  lty=c(1,2,3))
+
+
+```
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
